@@ -507,7 +507,7 @@ The distributions seem to be roughly identical for make and female identically, 
 
 **Question 26**
 
-To pass the year, a student must fulfil the following conditions:
+To pass the year, a student must fulfill the following conditions:
 
 • have no average grade in a course lower than 5;
 
@@ -515,9 +515,33 @@ To pass the year, a student must fulfil the following conditions:
 
 Create a data frame that gives for each student their id, their group, their final grade (as defined before) and a pass variable equal to `TRUE` if the student pass the year (and `FALSE` if they do not).
 
+```{r}
+pass <- avg_per_course |>
+  pivot_longer(
+    cols = -c(id, group),
+    names_to = "course",
+    values_to = "avg_grade"
+  ) |>
+  inner_join(courses |> select(course, semester), by = "course") |>
+  group_by(id, group) |>
+  mutate(
+    pass_course = avg_grade >= 5,
+    sem_avg = ave(avg_grade, semester, FUN = mean),
+    pass_sem = sem_avg >= 10
+  ) |>
+  summarise(
+    final_grade = mean(avg_grade),
+    pass = all(pass_course) & all(pass_sem)
+  ) |>
+  ungroup()
+```
+
+
 **Question 27**
 
 Compute and display the number of students who do not pass and yet have a final grade larger or equal to 10.
+
+
 
 **Question 28**
 
