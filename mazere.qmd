@@ -4,3 +4,67 @@ author: "Adriel Mazère"
 format: html
 ---
 
+```{r}
+#| message: false
+here::i_am("grades-eval-adriel-mazere.Rproj")
+library(here)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(knitr)
+```
+
+# Introduction
+
+You are an independent contractor and you have been selected by the Dean of The Spirit Academy of the Savanna to analyse the performances of their students. For confidentiality issues, you had to travel to a mystical forest in the heart of Africa to get access to the data. But strangely, you are requested to use github to store your work. The ways of The Spirit Academy of the Savanna are mysterious…
+
+## Study organisation
+At The Spirit Academy of the Savanna each student follows 10 different courses that are organised in 2 semesters. Students are divided into 15 groups.
+The number of grades per course depends on the course but also on the student as they may fail to attend to an exam. The names of the courses, their assignment to semesters and their number of exams are given in the `courses.csv` file which as the following columns:
+
+• `course`: the name of the course
+• `course_id`: a unique key to identify the course
+• `semester`: the semester of the course
+• `nb_exams`: the number of exams in the course
+
+**Question 1**
+
+Load the course description file.
+
+```{r}
+courses <- here("data", "courses.csv") |>
+  read_csv(
+    cols(
+  course = col_character(),
+  course_id = col_double(),
+  semester = col_double(),
+  nb_grades = col_double()
+    )
+  ) |>
+  rename(
+    course_name = X1,
+    course_id = X2,
+    semester = X3,
+    nb_grade = X4
+  ) |>
+  slice(-1)
+```
+**Question 2**
+
+Display the content of the file in a nicely formatted table in your document. Courses should be sorted in alphabetical order and column names should be written in English. This has to be done in R for instance using knitr::kable().
+
+```{r}
+courses |>
+  arrange(course_name) |>
+  kable()
+```
+
+
+
+
+
+
+
+
+
