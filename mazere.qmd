@@ -572,6 +572,19 @@ pass |>
 
 Determine the course that is the most responsible of student failure owing to grades below than 5.
 
+```{r}
+#| message: false
+responsible <- avg_per_course |>
+  pivot_longer(
+    cols = -c(id, group),
+    names_to = "course",
+    values_to = "avg_grade"
+  ) |>
+  filter(avg_grade < 5) |>
+  count(course, sort = TRUE)
+paste("The course responsible for making a student fail owing to grades below than 5 is",responsible$course)
+```
+
 
 **Question 30** 
 
