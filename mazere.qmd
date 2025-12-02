@@ -158,6 +158,17 @@ students |> ggplot(aes(x = age)) +
     x = "Age", y = "Count") +
   theme_minimal()
 ```
+**Question 8**
+
+Compute the median age of the students in each group and include in your rendering a table giving the median age for each group. The median should be reported as an integer.
+
+```{r}
+students |>
+  group_by(group) |>
+  summarise(median_age = round(median(age))) |>
+  select(group, median_age) |>
+  kable()
+```
 
 
 
