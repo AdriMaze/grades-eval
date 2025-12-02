@@ -150,6 +150,7 @@ students |>
 Show graphically the distribution of the age of the students.
 
 ```{r}
+#| message: false
 students <- students |>
   mutate(age = time_length(today() - birth_date, unit = "year"))
 students |> ggplot(aes(x = age)) +
@@ -163,10 +164,26 @@ students |> ggplot(aes(x = age)) +
 Compute the median age of the students in each group and include in your rendering a table giving the median age for each group. The median should be reported as an integer.
 
 ```{r}
+#| message: false
 students |>
   group_by(group) |>
   summarise(median_age = round(median(age))) |>
   select(group, median_age) |>
+  kable()
+```
+**Question 9**
+
+Build a table with the id, sex and age of the oldest student in each group. Sort the table by decreasing age order and include it in the rendering.
+
+```{r}
+#| message: false
+students |>
+  mutate(age = round(age)) |>
+  group_by(group) |>
+  filter(age == max(age)) |>
+  ungroup() |>
+  arrange(desc(age)) |>
+  select(id, sex, age) |>
   kable()
 ```
 
