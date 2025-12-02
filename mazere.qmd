@@ -267,6 +267,22 @@ grades |>
   ) |>
   kable()
 ```
+**Question 14**
+
+Compare graphically the distribution of the number of grades for female and male students.
+
+```{r}
+grades |>
+  filter(!is.na(grade)) |>
+  count(id, name = "n_grades") |>
+  inner_join(students, by = "id") |>
+  ggplot(aes(x = n_grades, fill = sex)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("steelblue", "salmon")) +
+  labs(title = "Distribution of number of grades by gender",
+    x = "Number of grades", y = "Density") +
+  theme_minimal()
+```
 
 
 
