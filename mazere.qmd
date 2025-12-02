@@ -516,6 +516,7 @@ To pass the year, a student must fulfill the following conditions:
 Create a data frame that gives for each student their id, their group, their final grade (as defined before) and a pass variable equal to `TRUE` if the student pass the year (and `FALSE` if they do not).
 
 ```{r}
+#| message: false
 pass <- avg_per_course |>
   pivot_longer(
     cols = -c(id, group),
@@ -536,11 +537,15 @@ pass <- avg_per_course |>
   ungroup()
 ```
 
-
 **Question 27**
 
 Compute and display the number of students who do not pass and yet have a final grade larger or equal to 10.
 
+```{r}
+pass_df |>
+  filter(!pass, final_grade >= 10) |>
+  nrow()
+```
 
 
 **Question 28**
