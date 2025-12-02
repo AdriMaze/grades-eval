@@ -461,6 +461,7 @@ final_grades <- avg_per_course |>
       across(-c(id, group, sex))
     )
   ) |>
+  drop_na() |>
   select(id, group, sex, final) |>
   arrange(desc(final))
 final_grades |>
@@ -472,6 +473,19 @@ final_grades |>
 **Question 24**
 
 Find a way to study differences in final grades between groups.
+
+```{r}
+final_grades |>
+  ggplot(aes(x = group, y = final)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(
+    title = "Final grade distribution by group",
+    x = "Group",
+    y = "Final grade"
+  ) +
+  theme_minimal()
+```
+
 
 **Question 25**
 
