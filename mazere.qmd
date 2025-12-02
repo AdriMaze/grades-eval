@@ -389,6 +389,7 @@ avg_per_course |>
 Show the average grades in *Drumming and Music* as a function of the average grades in *Hunting and Gathering Skills*. Make sure to maximize the readability of the proposed representation.
 
 ```{r}
+#| message: false
 avg_per_course |>
   ggplot(aes(x = `Hunting and Gathering Skills`,
              y = `Drumming and Music`)) +
@@ -408,6 +409,7 @@ There seems to be a positive correlation between the average grades in Hunting a
 The `cor()` function computes the correlation coeﬀicient between two vectors. It can be used as a summary function in `dplyr`. Using it, compute the correlation between the average grades in *Earth Magic and Fertility Rituals* and the average grades in *Shamanism and Spirit Communication* group by group.
 
 ```{r}
+#| message: false
 avg_per_course |>
   group_by(group) |>
   drop_na() |>
@@ -424,6 +426,7 @@ A negative correlation inside a group implies that if a student has higher grade
 Display the average grades in *Earth Magic and Fertility Rituals* (EMFR) as a function the average grades in *Shamanism and Spirit Communication* (SSC) for the students of the group in which those grades are the most correlated (positively or negatively).
 
 ```{r}
+#| message: false
 avg_per_course |>
   group_by(group) |>
   drop_na() |>
@@ -454,6 +457,7 @@ The group with the strongest negative correlation has $-0.43$. Therefore, we con
 Let us assume that the final grade of a student is the average of the averages of their grades for each course. Create a data frame with four columns, id, group, sex and final grade based on this definition for the last column. Sort the data frame in decrease order of final grade and include in the quarto rendering its first five rows.
 
 ```{r}
+#| message: false
 final_grades <- avg_per_course |>
   inner_join(students |> select(id, sex), by = "id") |>
   mutate(
@@ -475,6 +479,7 @@ final_grades |>
 Find a way to study differences in final grades between groups.
 
 ```{r}
+#| message: false
 final_grades |>
   ggplot(aes(x = group, y = final)) +
   geom_boxplot(fill = "steelblue") +
@@ -492,6 +497,7 @@ There is a lot of heterogeneity in the distribution of final grades, and the ran
 Include in the analysis conducted in the previous question the effect of sex.
 
 ```{r}
+#| message: false
 final_grades |>
   ggplot(aes(x = group, y = final, fill = sex)) +
   geom_boxplot() +
@@ -542,19 +548,30 @@ pass <- avg_per_course |>
 Compute and display the number of students who do not pass and yet have a final grade larger or equal to 10.
 
 ```{r}
-pass_df |>
-  filter(!pass, final_grade >= 10) |>
-  nrow()
+#| message: false
+paste(pass|>filter(!pass, final_grade >= 10) |>nrow(),"students didn't pass and yet have a final grade larger or equal to 10")
 ```
-
 
 **Question 28**
 
 Compute the pass rate per group and represent it graphically.
 
+```{r}
+#| message: false
+pass |>
+  group_by(group) |>
+  summarise(pass_rate = mean(pass)) |>
+  ggplot(aes(x = group, y = pass_rate)) +
+  geom_col(fill = "steelblue") +
+  scale_y_continuous() +
+  theme_minimal() +
+  labs(title = "Pass rate per group", y = "Pass rate", x = "Group")
+```
+
 **Question 29**
 
 Determine the course that is the most responsible of student failure owing to grades below than 5.
+
 
 **Question 30** 
 
