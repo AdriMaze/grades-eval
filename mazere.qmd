@@ -311,6 +311,7 @@ storytelling |>
 Compute from the previous data frame the distribution of the number of grades, that is for each number of grades (e.g. 10) the number of students who have exactly this number of grades in *Storytelling and Oral Tradition*. Represent graphically the results.
 
 ```{r}
+#| message: false
 storytelling |>
   count(n_grades) |>
   ggplot(aes(x = n_grades, y = n)) +
@@ -321,6 +322,38 @@ storytelling |>
     y = "Number of students") +
   theme_minimal()
 ```
+**Question 17**
+
+Using a graphical representation to study whether the number of grades per student in Storytelling and Oral Tradition depends on the group.
+
+```{r}
+#| message: false
+storytelling |>
+  group_by(group) |>
+  summarise(avg_grades = mean(n_grades)) |>
+  ggplot(aes(x = group, y = avg_grades)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Average number of grades per group in Storytelling and Oral Tradition",
+    x = "Group",
+    y = "Average number of grades") +
+  theme_minimal()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
