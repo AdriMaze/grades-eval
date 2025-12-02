@@ -127,6 +127,21 @@ students |>
        x = "Group", y = "Number of students") +
   theme_minimal()
 ```
+**Question 6**
+
+Show the gender balance in each group on a single graphical representation.
+
+```{r}
+students |>
+  count(group, sex) |>
+  ggplot(aes(x = group, y = n, fill = sex)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c("lightblue", "salmon")) +
+  labs(
+    title = "Gender balance by group",
+    x = "Group", y = "Count", fill = "Gender") +
+  theme_minimal()
+```
 
 
 
