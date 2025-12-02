@@ -15,6 +15,7 @@ library(dplyr)
 library(tidyr)
 library(readr)
 library(knitr)
+library(lubridate)
 ```
 
 # Introduction
@@ -119,6 +120,7 @@ grades <- here("data", "grades.csv") |>
 Use a graphical representation to display the number of students per group.
 
 ```{r}
+#| message: false
 students |>
   count(group) |>
   ggplot(aes(x = group, y = n)) +
@@ -132,18 +134,30 @@ students |>
 Show the gender balance in each group on a single graphical representation.
 
 ```{r}
+#| message: false
 students |>
   count(group, sex) |>
   ggplot(aes(x = group, y = n, fill = sex)) +
   geom_col(position = "fill") +
   scale_fill_manual(values = c("lightblue", "salmon")) +
-  labs(
-    title = "Gender balance by group",
+  labs(title = "Gender balance by group",
     x = "Group", y = "Count", fill = "Gender") +
   theme_minimal()
 ```
 
+**Question 7**
 
+Show graphically the distribution of the age of the students.
+
+```{r}
+students <- students |>
+  mutate(age = time_length(today() - birth_date, unit = "year"))
+students |> ggplot(aes(x = age)) +
+  geom_histogram(fill = "steelblue", color = "white", bins = 20) +
+  labs(title = "Distribution of student ages",
+    x = "Age", y = "Count") +
+  theme_minimal()
+```
 
 
 
