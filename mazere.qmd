@@ -186,6 +186,22 @@ students |>
   select(id, sex, age) |>
   kable()
 ```
+# Simple grade analysis
+
+**Question 10**
+
+Give the number of grades in the data set directly in the text of your quarto file, in a sentence of the form “The data set contains xxx grades.” where xxx is replaced by the number of grades.
+This must be computed from the data set. Note that missing grades should obviously not be included in the total.
+
+```{r}
+#| message: false
+paste0(
+  "The data set contains ", grades |>
+    filter(!is.na(grade)) |>
+    nrow(),
+  " grades.")
+```
+
 
 
 
