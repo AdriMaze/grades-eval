@@ -306,8 +306,21 @@ storytelling |>
   slice_sample(n = 10) |>
   kable()
 ```
+**Question 16**
 
+Compute from the previous data frame the distribution of the number of grades, that is for each number of grades (e.g. 10) the number of students who have exactly this number of grades in *Storytelling and Oral Tradition*. Represent graphically the results.
 
+```{r}
+storytelling |>
+  count(n_grades) |>
+  ggplot(aes(x = n_grades, y = n)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Distribution of number of Storytelling & Oral Tradition grades",
+    x = "Number of grades",
+    y = "Number of students") +
+  theme_minimal()
+```
 
 
 
