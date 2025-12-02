@@ -384,17 +384,72 @@ avg_per_course |>
   kable()
 ```
 
+**Question 20**
+
+Show the average grades in *Drumming and Music* as a function of the average grades in *Hunting and Gathering Skills*. Make sure to maximize the readability of the proposed representation.
+
+```{r}
+avg_per_course |>
+  ggplot(aes(x = `Hunting and Gathering Skills`,
+             y = `Drumming and Music`)) +
+  geom_point(alpha = 0.8, color = "black") +
+  geom_smooth(method = "lm", formula = 'y ~ x', se = FALSE, color = "salmon") +
+  labs(
+    title = "Average Drumming and Music vs. Hunting and Gathering Skills",
+    x = "Average grade in Hunting and Gathering Skills",
+    y = "Average grade in Drumming and Music"
+  ) +
+  theme_minimal()
+```
+There seems to be a positive correlation between the average grades in Hunting and Gathering Skills and the average grades in Drumming and Music. This implies that a student having a high average grade in one is highly likely to also have a high grade in the other.
+
+**Question 21**
+
+The `cor()` function computes the correlation coeﬀicient between two vectors. It can be used as a summary function in `dplyr`. Using it, compute the correlation between the average grades in *Earth Magic and Fertility Rituals* and the average grades in *Shamanism and Spirit Communication* group by group.
 
 
 
+**Question 22**
 
+Display the average grades in *Earth Magic and Fertility Rituals* as a function the average grades in *Shamanism and Spirit Communication* for the students of the group in which those grades are the most correlated (positively or negatively).
 
+**Question 23**
 
+Let us assume that the final grade of a student is the average of the averages of their grades for each course. Create a data frame with four columns, id, group, sex and final grade based on this definition for the last column. Sort the data frame in decrease order of final grade and include in the quarto rendering its first five rows.
 
+**Question 24**
 
+Find a way to study differences in final grades between groups.
 
+**Question 25**
 
+Include in the analysis conducted in the previous question the effect of sex.
 
+**Question 26**
+
+To pass the year, a student must fulfil the following conditions:
+
+• have no average grade in a course lower than 5;
+
+• have an average grade in each semester larger or equal to 10 (the average in a semester is simply the average of the average grades of the courses in the semester).
+
+Create a data frame that gives for each student their id, their group, their final grade (as defined before) and a pass variable equal to `TRUE` if the student pass the year (and `FALSE` if they do not).
+
+**Question 27**
+
+Compute and display the number of students who do not pass and yet have a final grade larger or equal to 10.
+
+**Question 28**
+
+Compute the pass rate per group and represent it graphically.
+
+**Question 29**
+
+Determine the course that is the most responsible of student failure owing to grades below than 5.
+
+**Question 30** 
+
+Display the effect of age on success. The goal is not to display the average age for students who passed but to show the success rate as a function of student age.
 
 
 
