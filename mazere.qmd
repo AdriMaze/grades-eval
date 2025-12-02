@@ -329,16 +329,35 @@ Using a graphical representation to study whether the number of grades per stude
 ```{r}
 #| message: false
 storytelling |>
-  group_by(group) |>
-  summarise(avg_grades = mean(n_grades)) |>
-  ggplot(aes(x = group, y = avg_grades)) +
-  geom_col(fill = "steelblue") +
+  ggplot(aes(x = factor(group), y = n_grades)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7) +
   labs(
-    title = "Average number of grades per group in Storytelling and Oral Tradition",
+    title = "Distribution of number of grades in Storytelling and Oral Tradition by group",
     x = "Group",
-    y = "Average number of grades") +
+    y = "Number of grades"
+  ) +
   theme_minimal()
 ```
+The distribution of the average number of grades per group does **not** seem to depend on the group. Indeed, all median seem to revolve around 10 and the ranges are approximately similar.
+
+**Question 18**
+
+Take the analysis of the previous question one step further to see if there is a dependency of the number of grades with respect to both the group and the sex of the students.
+
+```{r}
+#| message: false
+storytelling |>
+  ggplot(aes(x = group, y = n_grades, fill = sex)) +
+  geom_boxplot(alpha = 0.7) +
+  scale_fill_manual(values = c("steelblue", "salmon")) +
+  facet_wrap(~ sex) +
+  labs(
+    title = "Distribution of grades by group,\nseparately for each sex",
+    x = "Group", y = "Number of grades"
+  ) +
+  theme_minimal()
+```
+The conclusion is **identical** to the previous question: there does not seem to be any pattern variation between groups and whether the student is male or female.
 
 
 
