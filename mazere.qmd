@@ -417,11 +417,37 @@ avg_per_course |>
   ) |>
   kable()
 ```
-A negative correlation inside a group implies that if a student has higher grades in Earth Magic and Fertility Rituals, it's highly likely that he has lower ones in Shamanism and Spirit Communication, and vice-versa. For some classes, the correlation is weak (when it tends to 0) and for some others it's stronger (it tends to $|1|$).
+A negative correlation inside a group implies that if a student has higher grades in Earth Magic and Fertility Rituals, it's highly likely that he has lower ones in Shamanism and Spirit Communication, and vice-versa. For some classes, the correlation is weak (when it tends to $0$) and for some others it's stronger (it tends to $|1|$).
 
 **Question 22**
 
-Display the average grades in *Earth Magic and Fertility Rituals* as a function the average grades in *Shamanism and Spirit Communication* for the students of the group in which those grades are the most correlated (positively or negatively).
+Display the average grades in *Earth Magic and Fertility Rituals* (EMFR) as a function the average grades in *Shamanism and Spirit Communication* (SSC) for the students of the group in which those grades are the most correlated (positively or negatively).
+
+```{r}
+avg_per_course |>
+  group_by(group) |>
+  drop_na() |>
+  mutate(
+    corr = cor(
+      `Earth Magic and Fertility Rituals`,
+      `Shamanism and Spirit Communication`)
+  ) |>
+  ungroup() |>
+  filter(abs(corr) == max(abs(corr), na.rm = TRUE)) |>
+  ggplot(aes(
+    x = `Shamanism and Spirit Communication`,
+    y = `Earth Magic and Fertility Rituals`
+  )) +
+  geom_point(color = "black", alpha = 0.7) +
+  geom_smooth(method = "lm", formula = 'y ~ x', se = FALSE, color = "salmon") +
+  labs(
+    title = "Relationship between EMFR and SSC in the group with strongest correlation",
+    x = "Shamanism and Spirit Communication",
+    y = "Earth Magic and Fertility Rituals"
+  ) +
+  theme_minimal()
+```
+The group with the strongest negative correlation has $-0.43$. Therefore, we confirm the correlation graphically. We can however note that it might not be very significant due to the low number of observations.
 
 **Question 23**
 
