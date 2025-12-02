@@ -208,6 +208,7 @@ paste0(
 Compute the average of all the grades in *Herbalism and Traditional Medicine* in each group and display graphically this average as a function of the group. It is recommend to use `geom_col()` for this task (read the documentation!).
 
 ```{r}
+#| message: false
 grades |>
   inner_join(courses,  by = "course_id") |>
   inner_join(students, by = "id") |>
@@ -228,6 +229,7 @@ grades |>
 Compare graphically the distribution of the grades of the 2 semesters.
 
 ```{r}
+#| message: false
 grades |>
   inner_join(courses, by = "course_id") |>
   filter(!is.na(grade)) |>
@@ -248,6 +250,7 @@ grades |>
 Compute the number of grades per student and include in your quarto rendering an extract of the resulting data frame. Make sure to keep in the data frame the id of the students but also their group and their sex. Include in the text a markdown table with the minimum, maximum, average and median number of grades per student.
 
 ```{r}
+#| message: false
 grades |>
   filter(!is.na(grade)) |>
   count(id, name = "n_grades") |>
@@ -272,6 +275,7 @@ grades |>
 Compare graphically the distribution of the number of grades for female and male students.
 
 ```{r}
+#| message: false
 grades |>
   filter(!is.na(grade)) |>
   count(id, name = "n_grades") |>
@@ -282,6 +286,25 @@ grades |>
   labs(title = "Distribution of number of grades by gender",
     x = "Number of grades", y = "Density") +
   theme_minimal()
+```
+
+**Question 15**
+
+Create a data frame that gives for each student their id, their group and the number of grades they obtained in *Storytelling and Oral Tradition* and include in the quarto rendering a small extract of the result.
+
+```{r}
+#| message: false
+storytelling <- grades |>
+  inner_join(courses,  by = "course_id") |>
+  inner_join(students, by = "id") |>
+  filter(course == "Storytelling and Oral Tradition") |>
+  filter(!is.na(grade)) |>
+  group_by(id, group, sex) |>
+  summarise(n_grades = n()) |>
+  ungroup()
+storytelling |>
+  slice_sample(n = 10) |>
+  kable()
 ```
 
 
