@@ -4,6 +4,8 @@ author: "Adriel Mazère"
 format:
   html:
     code-fold: true
+  pdf:
+    code: false
 ---
 
 From [here](https://github.com/AdriMaze/grades-eval.git) you can access to the Github.
@@ -591,6 +593,7 @@ paste("The course responsible for making a student fail owing to grades below th
 Display the effect of age on success. The goal is not to display the average age for students who passed but to show the success rate as a function of student age.
 
 ```{r}
+#| message: false
 students |>
   mutate(age = round(age)) |>
   inner_join(pass, by = c("id", "group")) |>
@@ -598,7 +601,7 @@ students |>
   summarise(success_rate = mean(pass)) |>
   ggplot(aes(x = age, y = success_rate)) +
   geom_col(fill = "steelblue") +
-  scale_y_continuous(labels = scales::percent_format()) +
+  scale_y_continuous() +
   labs(
     title = "Success rate as a function of age",
     x = "Age",
