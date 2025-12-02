@@ -1,7 +1,9 @@
 ---
 title: "Final graded lab Adriel Mazère"
 author: "Adriel Mazère"
-format: html
+format:
+  html:
+    code-fold: true
 ---
 
 ```{r}
@@ -24,8 +26,11 @@ At The Spirit Academy of the Savanna each student follows 10 different courses t
 The number of grades per course depends on the course but also on the student as they may fail to attend to an exam. The names of the courses, their assignment to semesters and their number of exams are given in the `courses.csv` file which as the following columns:
 
 • `course`: the name of the course
+
 • `course_id`: a unique key to identify the course
+
 • `semester`: the semester of the course
+
 • `nb_exams`: the number of exams in the course
 
 **Question 1**
@@ -79,6 +84,30 @@ paste("The", "birth_date", "column of the students data frame is of class",
   class(students$birth_date))
 ```
 
+## Grades
+The grades are stored in the `grades.csv` CSV file. The first five rows of this data set are given in the following table:
+
+The data set uses a long format with a small number of columns and a large number of rows. Each row gives the `grade` of a student for a course. Grades are between 0 (the worst) and 20 (the best). Students are identified by the `id` column which contains their unique identifier, while the course is identified by the `course_id` column which contains the unique identifier of the course.
+
+Unfortunately, The Spirit Academy of the Savanna does not maintain very high data management standards and the `grades.csv` file is not perfectly encoded:
+
+• rather than using a comma as the separator, the file uses the following character: :.
+
+• rather than using `NA` to represent missing data, the file uses this: $.
+
+```{r}
+#| message: false
+grades <- here("data", "grades.csv") |>
+  read_delim(
+    delim = ":",
+    na = "$"
+  ) |>
+  mutate(
+    id = as.integer(id),
+    course_id = as.integer(course_id),
+    grade = as.integer(grade)
+  )
+```
 
 
 

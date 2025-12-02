@@ -107,6 +107,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">"grades-eval-adriel-mazere.Rproj"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -114,6 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
@@ -121,116 +124,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="study-organisation" class="level2">
 <h2 class="anchored" data-anchor-id="study-organisation">Study organisation</h2>
 <p>At The Spirit Academy of the Savanna each student follows 10 different courses that are organised in 2 semesters. Students are divided into 15 groups. The number of grades per course depends on the course but also on the student as they may fail to attend to an exam. The names of the courses, their assignment to semesters and their number of exams are given in the <code>courses.csv</code> file which as the following columns:</p>
-<p>• <code>course</code>: the name of the course • <code>course_id</code>: a unique key to identify the course • <code>semester</code>: the semester of the course • <code>nb_exams</code>: the number of exams in the course</p>
+<p>• <code>course</code>: the name of the course</p>
+<p>• <code>course_id</code>: a unique key to identify the course</p>
+<p>• <code>semester</code>: the semester of the course</p>
+<p>• <code>nb_exams</code>: the number of exams in the course</p>
 <p><strong>Question 1</strong></p>
 <p>Load the course description file.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>courses <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"courses.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">course =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">course_id =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">semester =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">nb_grades =</span> <span class="fu">col_double</span>()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">course_name =</span> X1,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">course_id =</span> X2,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">semester =</span> X3,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_grade =</span> X4</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 11 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (4): X1, X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">course =</span> <span class="fu">as.character</span>(course),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">course_id =</span> <span class="fu">as.integer</span>(course_id),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_grades =</span> <span class="fu">as.integer</span>(nb_grades),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">semester =</span> <span class="fu">as.integer</span>(semester)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p><strong>Question 2</strong></p>
-<p>Display the content of the file in a nicely formatted table in your document. Courses should be sorted in alphabetical order and column names should be written in English. This has to be done in R for instance using knitr::kable().</p>
+<p>Display the content of the file in a nicely formatted table in your document. Courses should be sorted in alphabetical order and column names should be written in English. This has to be done in R for instance using <code>knitr::kable()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>courses <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(course_name) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>courses <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(course) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">course_name</th>
-<th style="text-align: left;">course_id</th>
-<th style="text-align: left;">semester</th>
-<th style="text-align: left;">nb_grade</th>
+<th style="text-align: left;">course</th>
+<th style="text-align: right;">course_id</th>
+<th style="text-align: right;">semester</th>
+<th style="text-align: right;">nb_grades</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Animal Lore and Totemism</td>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Astronomy and Celestial Navigation</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Drumming and Music</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Earth Magic and Fertility Rituals</td>
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Herbalism and Traditional Medicine</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Hunting and Gathering Skills</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">8</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Martial Arts and Self-Defense</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Shamanism and Spirit Communication</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Storytelling and Oral Tradition</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">10</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Tribal Law and Customs</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">10</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</section>
+<section id="students" class="level2">
+<h2 class="anchored" data-anchor-id="students">Students</h2>
+<p>Students are described in the <code>students.csv</code> CSV file.</p>
+<p>Students are uniquely identified by the <code>id</code> column. Their group is given by the <code>group</code> column which contains the unique identifier of the group. The <code>birth_date</code> column contains the birth date of the students. The <code>sex</code> gives the sex of each student (F or M). It is also highly recommend to have group loaded as a factor and id as an integer.</p>
+<p><strong>Question 3</strong></p>
+<p>Load the student data set. Make sure the birth dates are correctly identified as Date objects by including the class of the corresponding column in the rendered text. For instance, include a sentence of the following form:</p>
+<p>The birth_date column of the students data frame is of class Date. Make also sure that the sex is identified as a factor.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"students.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(group),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">as.integer</span>(id),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">birth_date =</span> <span class="fu">as.Date</span>(birth_date),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">as.factor</span>(sex)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The"</span>, <span class="st">"birth_date"</span>, <span class="st">"column of the students data frame is of class"</span>, </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(students<span class="sc">$</span>birth_date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "The birth_date column of the students data frame is of class Date"</code></pre>
+</div>
+</div>
+</section>
+<section id="grades" class="level2">
+<h2 class="anchored" data-anchor-id="grades">Grades</h2>
+<p>The grades are stored in the <code>grades.csv</code> CSV file. The first five rows of this data set are given in the following table:</p>
+<p>The data set uses a long format with a small number of columns and a large number of rows. Each row gives the <code>grade</code> of a student for a course. Grades are between 0 (the worst) and 20 (the best). Students are identified by the <code>id</code> column which contains their unique identifier, while the course is identified by the <code>course_id</code> column which contains the unique identifier of the course.</p>
+<p>Unfortunately, The Spirit Academy of the Savanna does not maintain very high data management standards and the <code>grades.csv</code> file is not perfectly encoded:</p>
+<p>• rather than using a comma as the separator, the file uses the following character: :.</p>
+<p>• rather than using <code>NA</code> to represent missing data, the file uses this: $.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"grades.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_delim</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">":"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na =</span> <span class="st">"$"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">as.integer</span>(id),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">course_id =</span> <span class="fu">as.integer</span>(course_id),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">as.integer</span>(grade)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 </section>
