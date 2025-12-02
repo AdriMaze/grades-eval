@@ -485,11 +485,25 @@ final_grades |>
   ) +
   theme_minimal()
 ```
-
+There is a lot of heterogeneity in the distribution of final grades, and the range is also large, from around 9 to around 12. The median final grade seems to be, on average, above 10, around 11.
 
 **Question 25**
 
 Include in the analysis conducted in the previous question the effect of sex.
+
+```{r}
+final_grades |>
+  ggplot(aes(x = group, y = final, fill = sex)) +
+  geom_boxplot() +
+  labs(
+    title = "Final grade distribution by group and sex",
+    x = "Group",
+    y = "Final grade",
+    fill = "Sex"
+  ) +
+  theme_minimal()
+```
+The distributions seem to be roughly identical for make and female identically, if not, males tend to have, on average, lower final grades and higher ranges, displaying higher heterogeneity.
 
 **Question 26**
 
