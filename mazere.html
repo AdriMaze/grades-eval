@@ -597,15 +597,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(courses, <span class="at">by =</span> <span class="st">"course_id"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(grade)) <span class="sc">|&gt;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">fill =</span> <span class="fu">factor</span>(semester))) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"salmon"</span>)) <span class="sc">+</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of grades by semester"</span>,</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Grade"</span>,</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Semester"</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Semester"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -613,6 +612,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="mazere_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="attendance-analysis" class="level1">
+<h1>Attendance analysis</h1>
+<p><strong>Question 13</strong></p>
+<p>Compute the number of grades per student and include in your quarto rendering an extract of the resulting data frame. Make sure to keep in the data frame the id of the students but also their group and their sex. Include in the text a markdown table with the minimum, maximum, average and median number of grades per student.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>grades <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(grade)) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(id, <span class="at">name =</span> <span class="st">"n_grades"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(students, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, group, sex, n_grades) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">group</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">n_grades</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">619</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">76</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">552</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">290</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">276</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">582</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">841</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">757</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">682</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">61</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>grades <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(grade)) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(id, <span class="at">name =</span> <span class="st">"n_grades"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min    =</span> <span class="fu">min</span>(n_grades),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">max    =</span> <span class="fu">max</span>(n_grades),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean   =</span> <span class="fu">round</span>(<span class="fu">mean</span>(n_grades),<span class="dv">1</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(n_grades)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">62.3</td>
+<td style="text-align: right;">62</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>

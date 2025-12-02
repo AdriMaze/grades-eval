@@ -241,7 +241,32 @@ grades |>
     fill = "Semester") +
   theme_minimal()
 ```
+# Attendance analysis
 
+**Question 13** 
+
+Compute the number of grades per student and include in your quarto rendering an extract of the resulting data frame. Make sure to keep in the data frame the id of the students but also their group and their sex. Include in the text a markdown table with the minimum, maximum, average and median number of grades per student.
+
+```{r}
+grades |>
+  filter(!is.na(grade)) |>
+  count(id, name = "n_grades") |>
+  inner_join(students, by = "id") |>
+  select(id, group, sex, n_grades) |>
+  slice_sample(n=10) |>
+  kable()
+
+grades |>
+  filter(!is.na(grade)) |>
+  count(id, name = "n_grades") |>
+  summarise(
+    min    = min(n_grades),
+    max    = max(n_grades),
+    mean   = round(mean(n_grades),1),
+    median = median(n_grades)
+  ) |>
+  kable()
+```
 
 
 
