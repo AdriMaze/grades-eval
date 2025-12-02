@@ -95,6 +95,9 @@ Unfortunately, The Spirit Academy of the Savanna does not maintain very high dat
 
 • rather than using `NA` to represent missing data, the file uses this: $.
 
+**Question 4** 
+Load the grade data set despite the encoding issues.
+
 ```{r}
 #| message: false
 grades <- here("data", "grades.csv") |>
@@ -109,6 +112,21 @@ grades <- here("data", "grades.csv") |>
   )
 ```
 
+# Student population analysis
+
+**Question 5**
+
+Use a graphical representation to display the number of students per group.
+
+```{r}
+students |>
+  count(group) |>
+  ggplot(aes(x = group, y = n)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "Number of students per group",
+       x = "Group", y = "Number of students") +
+  theme_minimal()
+```
 
 
 
