@@ -407,7 +407,17 @@ There seems to be a positive correlation between the average grades in Hunting a
 
 The `cor()` function computes the correlation coeﬀicient between two vectors. It can be used as a summary function in `dplyr`. Using it, compute the correlation between the average grades in *Earth Magic and Fertility Rituals* and the average grades in *Shamanism and Spirit Communication* group by group.
 
-
+```{r}
+avg_per_course |>
+  group_by(group) |>
+  drop_na() |>
+  summarise(
+    corr = cor(`Earth Magic and Fertility Rituals`,
+               `Shamanism and Spirit Communication`)
+  ) |>
+  kable()
+```
+A negative correlation inside a group implies that if a student has higher grades in Earth Magic and Fertility Rituals, it's highly likely that he has lower ones in Shamanism and Spirit Communication, and vice-versa. For some classes, the correlation is weak (when it tends to 0) and for some others it's stronger (it tends to $|1|$).
 
 **Question 22**
 

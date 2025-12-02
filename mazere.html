@@ -72,6 +72,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="mazere_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="mazere_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -642,64 +671,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">694</td>
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">63</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">116</td>
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">64</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">424</td>
-<td style="text-align: left;">11</td>
+<td style="text-align: right;">501</td>
+<td style="text-align: left;">12</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: right;">61</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">427</td>
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">756</td>
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">63</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">495</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">F</td>
+<td style="text-align: right;">325</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">M</td>
 <td style="text-align: right;">64</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">675</td>
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">M</td>
-<td style="text-align: right;">64</td>
+<td style="text-align: right;">63</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">144</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">64</td>
+<td style="text-align: right;">531</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">62</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">636</td>
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">778</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">3</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">62</td>
 </tr>
+<tr class="even">
+<td style="text-align: right;">326</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">63</td>
+</tr>
 <tr class="odd">
-<td style="text-align: right;">688</td>
-<td style="text-align: left;">7</td>
+<td style="text-align: right;">236</td>
+<td style="text-align: left;">5</td>
 <td style="text-align: left;">F</td>
-<td style="text-align: right;">64</td>
+<td style="text-align: right;">62</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">170</td>
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: right;">64</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">63</td>
 </tr>
 </tbody>
 </table>
@@ -791,62 +820,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">234</td>
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">609</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">659</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">13</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">409</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">F</td>
+<td style="text-align: right;">479</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">M</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">541</td>
+<td style="text-align: right;">829</td>
 <td style="text-align: left;">6</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">123</td>
-<td style="text-align: left;">13</td>
+<td style="text-align: right;">562</td>
+<td style="text-align: left;">1</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">434</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">710</td>
+<td style="text-align: right;">842</td>
 <td style="text-align: left;">9</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">504</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">M</td>
+<td style="text-align: left;">F</td>
 <td style="text-align: right;">9</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">578</td>
+<td style="text-align: right;">616</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">M</td>
-<td style="text-align: right;">10</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">570</td>
-<td style="text-align: left;">8</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">4</td>
 <td style="text-align: left;">F</td>
-<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">761</td>
-<td style="text-align: left;">10</td>
+<td style="text-align: right;">698</td>
+<td style="text-align: left;">3</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: right;">10</td>
 </tr>
@@ -968,69 +997,204 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">329</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: right;">8.0</td>
-<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">652</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">8.3</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">467</td>
-<td style="text-align: left;">12</td>
-<td style="text-align: right;">10.5</td>
-<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">525</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">12.7</td>
+<td style="text-align: right;">9.6</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">555</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">13.0</td>
-<td style="text-align: right;">9.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">294</td>
-<td style="text-align: left;">11</td>
-<td style="text-align: right;">13.7</td>
+<td style="text-align: right;">501</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">10.0</td>
 <td style="text-align: right;">9.4</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">549</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: right;">10.7</td>
+<tr class="even">
+<td style="text-align: right;">240</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">8.0</td>
 <td style="text-align: right;">9.1</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">812</td>
-<td style="text-align: left;">11</td>
-<td style="text-align: right;">10.3</td>
-<td style="text-align: right;">8.4</td>
-</tr>
 <tr class="odd">
-<td style="text-align: right;">604</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">13.0</td>
-<td style="text-align: right;">9.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">721</td>
-<td style="text-align: left;">9</td>
-<td style="text-align: right;">9.3</td>
-<td style="text-align: right;">10.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">534</td>
+<td style="text-align: right;">739</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: right;">11.0</td>
-<td style="text-align: right;">8.4</td>
+<td style="text-align: right;">9.2</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">413</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: right;">8.0</td>
-<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">304</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">9.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">627</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">8.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">390</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">10.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">684</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">8.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">356</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p><strong>Question 20</strong></p>
+<p>Show the average grades in <em>Drumming and Music</em> as a function of the average grades in <em>Hunting and Gathering Skills</em>. Make sure to maximize the readability of the proposed representation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>avg_per_course <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Hunting and Gathering Skills</span><span class="st">`</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">`</span><span class="at">Drumming and Music</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">'y ~ x'</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"salmon"</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average Drumming and Music vs. Hunting and Gathering Skills"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Average grade in Hunting and Gathering Skills"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average grade in Drumming and Music"</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mazere_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There seems to be a positive correlation between the average grades in Hunting and Gathering Skills and the average grades in Drumming and Music. This implies that a student having a high average grade in one is highly likely to also have a high grade in the other.</p>
+<p><strong>Question 21</strong></p>
+<p>The <code>cor()</code> function computes the correlation coeﬀicient between two vectors. It can be used as a summary function in <code>dplyr</code>. Using it, compute the correlation between the average grades in <em>Earth Magic and Fertility Rituals</em> and the average grades in <em>Shamanism and Spirit Communication</em> group by group.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>avg_per_course <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">corr =</span> <span class="fu">cor</span>(<span class="st">`</span><span class="at">Earth Magic and Fertility Rituals</span><span class="st">`</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">`</span><span class="at">Shamanism and Spirit Communication</span><span class="st">`</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">group</th>
+<th style="text-align: right;">corr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.0914069</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">-0.1791018</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">-0.4303042</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.0473104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">-0.2060071</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">0.0073480</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">-0.2552212</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">-0.2571894</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">-0.1011056</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">-0.2150655</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">-0.1164424</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">-0.2189203</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13</td>
+<td style="text-align: right;">-0.4316472</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">0.1709688</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: right;">-0.1343181</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A negative correlation inside a group implies that if a student has higher grades in Earth Magic and Fertility Rituals, it’s highly likely that he has lower ones in Shamanism and Spirit Communication, and vice-versa. For some classes, the correlation is weak (when it tends to 0) and for some others it’s stronger (it tends to <span class="math inline">\(|1|\)</span>).</p>
+<p><strong>Question 22</strong></p>
+<p>Display the average grades in <em>Earth Magic and Fertility Rituals</em> as a function the average grades in <em>Shamanism and Spirit Communication</em> for the students of the group in which those grades are the most correlated (positively or negatively).</p>
+<p><strong>Question 23</strong></p>
+<p>Let us assume that the final grade of a student is the average of the averages of their grades for each course. Create a data frame with four columns, id, group, sex and final grade based on this definition for the last column. Sort the data frame in decrease order of final grade and include in the quarto rendering its first five rows.</p>
+<p><strong>Question 24</strong></p>
+<p>Find a way to study differences in final grades between groups.</p>
+<p><strong>Question 25</strong></p>
+<p>Include in the analysis conducted in the previous question the effect of sex.</p>
+<p><strong>Question 26</strong></p>
+<p>To pass the year, a student must fulfil the following conditions:</p>
+<p>• have no average grade in a course lower than 5;</p>
+<p>• have an average grade in each semester larger or equal to 10 (the average in a semester is simply the average of the average grades of the courses in the semester).</p>
+<p>Create a data frame that gives for each student their id, their group, their final grade (as defined before) and a pass variable equal to <code>TRUE</code> if the student pass the year (and <code>FALSE</code> if they do not).</p>
+<p><strong>Question 27</strong></p>
+<p>Compute and display the number of students who do not pass and yet have a final grade larger or equal to 10.</p>
+<p><strong>Question 28</strong></p>
+<p>Compute the pass rate per group and represent it graphically.</p>
+<p><strong>Question 29</strong></p>
+<p>Determine the course that is the most responsible of student failure owing to grades below than 5.</p>
+<p><strong>Question 30</strong></p>
+<p>Display the effect of age on success. The goal is not to display the average age for students who passed but to show the success rate as a function of student age.</p>
 </section>
 
 </main>
