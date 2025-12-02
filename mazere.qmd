@@ -6,6 +6,8 @@ format:
     code-fold: true
 ---
 
+From [here](https://github.com/AdriMaze/grades-eval.git) you can access to the Github.
+
 ```{r}
 #| message: false
 here::i_am("grades-eval-adriel-mazere.Rproj")
@@ -202,6 +204,43 @@ paste0(
   " grades.")
 ```
 
+**Question 11**
+Compute the average of all the grades in *Herbalism and Traditional Medicine* in each group and display graphically this average as a function of the group. It is recommend to use `geom_col()` for this task (read the documentation!).
+
+```{r}
+grades |>
+  inner_join(courses,  by = "course_id") |>
+  inner_join(students, by = "id") |>
+  filter(course == "Herbalism and Traditional Medicine") |>
+  filter(!is.na(grade)) |>
+  group_by(group) |>
+  summarise(avg_grade = mean(grade)) |>
+  ggplot(aes(x = group, y = avg_grade)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Average grade in Herbalism and Traditional Medicine",
+    x = "Group", y = "Average grade") +
+  theme_minimal()
+```
+
+**Question 12**
+
+Compare graphically the distribution of the grades of the 2 semesters.
+
+```{r}
+grades |>
+  inner_join(courses, by = "course_id") |>
+  filter(!is.na(grade)) |>
+  ggplot(aes(x = grade, fill = factor(semester))) +
+  geom_density(alpha = 0.7) +
+  scale_fill_manual(values = c("steelblue", "salmon")) +
+  labs(
+    title = "Distribution of grades by semester",
+    x = "Grade",
+    y = "Density",
+    fill = "Semester") +
+  theme_minimal()
+```
 
 
 
