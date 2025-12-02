@@ -453,6 +453,22 @@ The group with the strongest negative correlation has $-0.43$. Therefore, we con
 
 Let us assume that the final grade of a student is the average of the averages of their grades for each course. Create a data frame with four columns, id, group, sex and final grade based on this definition for the last column. Sort the data frame in decrease order of final grade and include in the quarto rendering its first five rows.
 
+```{r}
+final_grades <- avg_per_course |>
+  inner_join(students |> select(id, sex), by = "id") |>
+  mutate(
+    final = rowMeans(
+      across(-c(id, group, sex))
+    )
+  ) |>
+  select(id, group, sex, final) |>
+  arrange(desc(final))
+final_grades |>
+  slice_sample(n = 10) |>
+  kable()
+```
+
+
 **Question 24**
 
 Find a way to study differences in final grades between groups.
