@@ -33,32 +33,52 @@ The number of grades per course depends on the course but also on the student as
 Load the course description file.
 
 ```{r}
+#| message: false
 courses <- here("data", "courses.csv") |>
-  read_csv(
-    cols(
-  course = col_character(),
-  course_id = col_double(),
-  semester = col_double(),
-  nb_grades = col_double()
-    )
-  ) |>
-  rename(
-    course_name = X1,
-    course_id = X2,
-    semester = X3,
-    nb_grade = X4
-  ) |>
-  slice(-1)
+  read_csv() |>
+  mutate(
+    course = as.character(course),
+    course_id = as.integer(course_id),
+    nb_grades = as.integer(nb_grades),
+    semester = as.integer(semester)
+  )
 ```
 **Question 2**
 
-Display the content of the file in a nicely formatted table in your document. Courses should be sorted in alphabetical order and column names should be written in English. This has to be done in R for instance using knitr::kable().
+Display the content of the file in a nicely formatted table in your document. Courses should be sorted in alphabetical order and column names should be written in English. This has to be done in R for instance using `knitr::kable()`.
 
 ```{r}
+#| message: false
 courses |>
-  arrange(course_name) |>
+  arrange(course) |>
   kable()
 ```
+## Students
+Students are described in the `students.csv` CSV file. 
+
+Students are uniquely identified by the `id` column. Their group is given by the `group` column which contains the unique identifier of the group. The `birth_date` column contains the birth date of the students. The `sex` gives the sex of each student (F or M). It is also highly recommend to have group loaded as a factor and id as an integer.
+
+**Question 3**
+
+Load the student data set. Make sure the birth dates are correctly identified as Date objects by including the class of the corresponding column in the rendered text. For instance, include a sentence of the following form:
+
+The birth_date column of the students data frame is of class Date.
+Make also sure that the sex is identified as a factor.
+
+```{r}
+#| message: false
+students <- here("data","students.csv") |>
+  read_csv() |>
+  mutate(
+    group = as.factor(group),
+    id = as.integer(id),
+    birth_date = as.Date(birth_date),
+    sex = as.factor(sex)
+  )
+paste("The", "birth_date", "column of the students data frame is of class", 
+  class(students$birth_date))
+```
+
 
 
 
